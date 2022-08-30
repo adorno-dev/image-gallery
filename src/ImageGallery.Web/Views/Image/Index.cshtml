@@ -1,0 +1,50 @@
+@model IEnumerable<Image>
+
+@{ ViewBag.Title = $"Images from gallery <b>{ViewBag.Title}</b>"; }
+
+<a asp-action="create" asp-route-id="@ViewBag.Id" class="btn btn-primary">New Image</a>
+
+<hr />
+
+@if (Model.Any())
+{
+    <div>
+        <table class="table table-striped table-images">
+            <thead>
+                <th>Image</th>
+                <th>@Html.DisplayNameFor(m => m.Id)</th>
+                <th>@Html.DisplayNameFor(m => m.Title)</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src='@($"{item.FilePath}?{DateTime.Now.ToLocalTime()}")' width="80px">
+                        </td>
+                        <td>@item.Id.ToString("D6")</td>
+                        <td>@item.Title</td>
+                        <td>
+                            <a asp-action="effects" asp-route-id="@item.Id" class="btn btn-primary">
+                                <i class="bi btn-sm bi-magic" title="Apply Effects"></i>
+                            </a>
+                            <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-secondary">
+                                <i class="bi btn-sm bi-pencil" title="Update this Image"></i>
+                            </a>
+                            <a asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger">
+                                <i class="bi btn-sm bi-trash" title="Delete this Image"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        There's no gallery available.
+    </div>
+}

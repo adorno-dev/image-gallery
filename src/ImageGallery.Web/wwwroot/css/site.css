@@ -1,0 +1,26 @@
+.table-images > tbody > tr > td
+{
+  vertical-align: middle;
+}
+
+.table-images tr>th:first-child,
+.table-images tr>th:last-child,
+.table-images tr>td:first-child,
+.table-images tr>td:last-child,
+.table-images tr>td:nth-child(2),
+.table-images tr>td:nth-child(2)
+{
+  width: 1%;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.table-galleries tr>th:first-child,
+.table-galleries tr>th:last-child,
+.table-galleries tr>td:first-child,
+.table-galleries tr>td:last-child
+{
+  width: 1%;
+  white-space: nowrap;
+  text-align: center;
+}

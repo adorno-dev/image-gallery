@@ -1,0 +1,49 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/lib/lightbox2/css/lightbox.min.css">
+    <link rel="stylesheet" href="/css/site.css">
+    <title>Image Gallery</title>
+</head>
+<body style="padding-bottom: 80px" class="mb-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="home" asp-action="index">Image Gallery</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" asp-area="" asp-controller="home" asp-action="index">Main</a>
+                    <a class="nav-link" asp-area="" asp-controller="gallery" asp-action="index">Gallery</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-2">
+        <h2>@Html.Raw(ViewBag.Title)</h2>
+        <hr />
+        <partial name="_PartialMessage" />
+        @RenderBody()
+    </div>
+    <div class="text-light bg-dark p-3 fixed-bottom text-center">
+        Image Gallery &copy; @DateTime.Now.Year.ToString() <br />
+        All rights reserved.
+    </div>
+    <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+    @RenderSection("Scripts", false)
+    <script src="/lib/lightbox2/js/lightbox-plus-jquery.min.js"></script>
+    <script>
+        lightbox.option({
+            'albumLabel': 'Image %1 of %2'
+        });
+    </script>
+</body>
+</html>

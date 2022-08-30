@@ -1,0 +1,48 @@
+@model Image
+
+@{ ViewBag.Title = $"Apply Effects on <b>{Model.Title}</b>"; }
+
+<form asp-action="ApplyEffects" method="post">
+    <input type="hidden" name="id" value="@Model.Id">
+    <div class="form-group mt-3">
+        <img src="@Model.FilePath" class="img-thumbnail" width="300" id="CurrentImage">
+    </div>
+    <div class="form-group mt-3">
+        <button class="btn btn-sm btn-success" asp-action="ApplyEffects" asp-route-effect="rl" title="Left Rotation">
+            <i class="bi bi-arrow-counterclockwise"></i>
+        </button>
+        <button class="btn btn-sm btn-success" asp-action="ApplyEffects" asp-route-effect="rr" title="Right Rotation">
+            <i class="bi bi-arrow-clockwise"></i>
+        </button>
+        <button class="btn btn-sm btn-success" asp-action="ApplyEffects" asp-route-effect="fh" title="Flip Horizontally">
+            <i class="bi bi-arrow-left-right"></i>
+        </button>
+        <button class="btn btn-sm btn-success" asp-action="ApplyEffects" asp-route-effect="fv" title="Flip Vertically">
+            <i class="bi bi-arrow-down-up"></i>
+        </button>
+        <button class="btn btn-sm btn-dark" asp-action="ApplyEffects" asp-route-effect="gs" title="Gray Scale">
+            <i class="bi bi-image-alt"></i>
+        </button>
+        <button class="btn btn-sm btn-dark" asp-action="ApplyEffects" asp-route-effect="sp" title="Sepia">
+            <i class="bi bi-funnel"></i>
+        </button>
+        <button class="btn btn-sm btn-dark" asp-action="ApplyEffects" asp-route-effect="iv" title="Invert">
+            <i class="bi bi-file-image-fill"></i>
+        </button>
+        <button class="btn btn-sm btn-dark" asp-action="ApplyEffects" asp-route-effect="gb" title="Gaussian Blur">
+            <i class="bi bi-eraser"></i>
+        </button>
+    </div>
+    <div class="form-group mt-3">
+        <a asp-action="index" asp-route-id="@Model.GalleryId" class="btn btn-secondary">Go back to Gallery</a>
+    </div>
+</form>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", (event) =>
+    {
+        var image = document.querySelector("#CurrentImage");
+        
+        image.src = image.src + '?' + new Date().getTime();
+    });
+</script>

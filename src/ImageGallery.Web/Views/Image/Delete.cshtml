@@ -1,0 +1,17 @@
+@model Image
+
+@{ViewBag.Title = "Delete this image";}
+
+<form method="post">
+    <input type="hidden" asp-for="@Model.Id">
+    <div class="mt-3">
+        <h3>Are you sure delete this image? (@Model.Title)</h3>
+    </div>
+    <div class="mt-3">
+        <img src='@($"{Model.FilePath}?{DateTime.Now.ToLocalTime()}")' class="img-thumbnail" width="200" id="CurrentImage">
+    </div>
+    <div class="mt-3">
+        <a asp-action="index" asp-route-id="@Model.GalleryId" class="btn btn-secondary">Cancel</a>
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </div>
+</form>

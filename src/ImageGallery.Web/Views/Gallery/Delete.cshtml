@@ -1,0 +1,14 @@
+@model Gallery
+
+@{ViewBag.Title = "Delete this gallery";}
+
+<form method="post">
+    <input type="hidden" asp-for="@Model.Id">
+    <div class="mt-3">
+        <h3>Are you sure delete this gallery? (@Model.Title)</h3>
+    </div>
+    <div class="mt-3">
+        <a asp-action="index" class="btn btn-secondary">Cancel</a>
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </div>
+</form>

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Gallery>
+
+@{ ViewBag.Title = "Image Galleries"; }
+
+@foreach (var gallery in Model)
+{
+    if (gallery.Images.Any())
+    {
+        <h2>@gallery.Title</h2>
+        <hr />
+        <div class="row g-3">
+            @foreach (var image in gallery.Images)
+            {
+                <div class="col-2">
+                    <div class="card">
+                        <a href='@($"{image.FilePath}?width=600&{DateTime.Now.ToShortTimeString()}")' data-lightbox='@image.GalleryId.ToString("D6")' data-title="@image.Title">
+                            <img src='@($"{image.FilePath}?width=200&{DateTime.Now.ToShortTimeString()}")' class="img-responsive p-3" width="100%">
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+        <hr />
+    }
+}
